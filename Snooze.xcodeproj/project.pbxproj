@@ -61,6 +61,7 @@
 		EB48C6B31A5492C200E1B32B /* image05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image05.png; sourceTree = "<group>"; };
 		EB48C6B41A5492C200E1B32B /* image06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image06.png; sourceTree = "<group>"; };
 		EB48C6B51A5492C200E1B32B /* image07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image07.png; sourceTree = "<group>"; };
+		EB48C6B91A549BA600E1B32B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EB5320A91A53C0C200396780 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		EB5320AB1A53CCE600396780 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -97,6 +98,7 @@
 		955A0AD26D9EF09882138308 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB48C6B91A549BA600E1B32B /* CoreGraphics.framework */,
 				67002BE99E33D32A434EA815 /* libPods.a */,
 			);
 			name = Frameworks;

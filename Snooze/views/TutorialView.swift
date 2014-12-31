@@ -22,9 +22,11 @@ class TutorialView: UIView {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var captureDevice: AVCaptureDevice!
+    var stillImageOutput: AVCaptureStillImageOutput!
     
     var cameraView: UIView!
     var cameraLayer: UIView!
+    var finishedImage: UIImageView!
     var dotsBackground: UIView!
     var cameraButton: BFPaperButton!
     var retryButton: BFPaperButton!
@@ -141,6 +143,9 @@ class TutorialView: UIView {
         
         cameraLayer = UIView(frame: cameraView.bounds)
         
+        finishedImage = UIImageView(frame: cameraLayer.bounds)
+        finishedImage.alpha = 0
+        
         var hideTooltip = UITapGestureRecognizer(target: self, action: "hideTooltip")
         hideTooltip.numberOfTapsRequired = 1
         cameraLayer.addGestureRecognizer(hideTooltip)
@@ -202,6 +207,7 @@ class TutorialView: UIView {
         tooltipDoneButton.frame = CGRectMake((cameraTooltip.frame.size.width - tooltipDoneButton.frame.size.width) / 2, cameraTooltip.frame.size.height - tooltipDoneButton.frame.size.height - 36, tooltipDoneButton.frame.size.width, tooltipDoneButton.frame.size.height)
         
         cameraView.addSubview(cameraLayer)
+        cameraView.addSubview(finishedImage)
         cameraView.addSubview(dotsBackground)
         cameraView.addSubview(cameraButton)
         cameraView.addSubview(retryButton)
@@ -234,12 +240,25 @@ class TutorialView: UIView {
         
         captureSession.addInput(AVCaptureDeviceInput(device: captureDevice, error: nil))
         
+        startCamera()
+        
+        return true
+    }
+    
+    func startCamera() {
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         cameraLayer.layer.addSublayer(previewLayer)
         previewLayer.frame = CGRectMake(0, 0, deviceSize.width, deviceSize.height)
-        captureSession.startRunning()
         
-        return true
+        stillImageOutput = AVCaptureStillImageOutput()
+        stillImageOutput.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
+        captureSession.addOutput(stillImageOutput)
+        
+        captureSession.startRunning()
+    }
+    
+    func stopCamera() {
+        captureSession.stopRunning()
     }
     
     func hideTooltip() {
@@ -252,6 +271,31 @@ class TutorialView: UIView {
     
     func cameraButtonAction() {
         cameraButton.userInteractionEnabled = false
+        
+        var videoConnection: AVCaptureConnection?
+        for connection in stillImageOutput.connections {
+            for port in connection.inputPorts as [AVCaptureInputPort] {
+                if port.mediaType == AVMediaTypeVideo {
+                    videoConnection = connection as? AVCaptureConnection
+                    break
+                }
+            }
+            if let c = videoConnection {
+                break
+            }
+        }
+        
+        stillImageOutput.captureStillImageAsynchronouslyFromConnection(videoConnection, completionHandler: { (imageSampleBuffer, error) -> Void in
+            var data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageSampleBuffer)
+            self.finishedImage.image = UIImage(data: data)
+            self.stopCamera()
+            
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.finishedImage.alpha = 1
+            }) { (done) -> Void in
+                self.stopCamera()
+            }
+        })
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.cameraButton.alpha = 0
