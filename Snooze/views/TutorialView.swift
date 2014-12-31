@@ -88,6 +88,7 @@ class TutorialView: UIView {
             firstDot.image = UIImage(named: "image01.png")
         } else if currentView == 1 {
             secondDot.image = UIImage(named: "image01.png")
+            UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
         } else if currentView == 2 {
             thirdDot.image = UIImage(named: "image01.png")
         } else if currentView == 3 {
@@ -142,10 +143,10 @@ class TutorialView: UIView {
         cameraLayer.addGestureRecognizer(hideTooltip)
         
         dotsBackground = UIView(frame: CGRectMake(0, deviceSize.height - 60, deviceSize.width, 60))
-        dotsBackground.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.9)
+        dotsBackground.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.8)
         
         cameraButton = UIButton(frame: CGRectMake(0, deviceSize.height - 120, deviceSize.width, 60))
-        cameraButton.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.72)
+        cameraButton.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.6)
         cameraButton.setImage(UIImage(named: "image03.png"), forState: .Normal)
         cameraButton.imageEdgeInsets = UIEdgeInsetsMake(10, (deviceSize.width - (40 * (163 / 137))) / 2, 10, (deviceSize.width - (40 * (163 / 137))) / 2)
         
