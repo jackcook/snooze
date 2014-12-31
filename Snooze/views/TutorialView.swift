@@ -160,9 +160,9 @@ class TutorialView: UIView {
         tooltipTitle.font = UIFont(name: "GillSans-Light", size: 24)
         tooltipTitle.textColor = UIColor(red: 0.39, green: 0.39, blue: 0.39, alpha: 1)
         tooltipTitle.sizeToFit()
-        tooltipTitle.frame = CGRectMake((cameraTooltip.frame.size.width - tooltipTitle.frame.size.width) / 2, 16, tooltipTitle.frame.size.width, tooltipTitle.frame.size.height)
+        tooltipTitle.frame = CGRectMake((cameraTooltip.frame.size.width - tooltipTitle.frame.size.width) / 2, 24, tooltipTitle.frame.size.width, tooltipTitle.frame.size.height)
         
-        tooltipBody = UILabel(frame: CGRectMake(14, -18, cameraTooltip.frame.size.width - 28, cameraTooltip.frame.size.height))
+        tooltipBody = UILabel(frame: CGRectMake(28, -16, cameraTooltip.frame.size.width - 56, cameraTooltip.frame.size.height))
         tooltipBody.numberOfLines = 0
         tooltipBody.text = "Snooze will compare this photo to other photos you take when you wake up in order to turn off the alarm."
         tooltipBody.font = UIFont(name: "GillSans-Light", size: 16)
