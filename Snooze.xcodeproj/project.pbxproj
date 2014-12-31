@@ -18,6 +18,7 @@
 		EB109BAA1A53BC1800F1D4D0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB109BA91A53BC1800F1D4D0 /* Common.swift */; };
 		EB109BAC1A53BDB800F1D4D0 /* background01.png in Resources */ = {isa = PBXBuildFile; fileRef = EB109BAB1A53BDB800F1D4D0 /* background01.png */; };
 		EB5320AA1A53C0C200396780 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5320A91A53C0C200396780 /* TutorialView.swift */; };
+		EB5320AC1A53CCE600396780 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5320AB1A53CCE600396780 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		EB109BA91A53BC1800F1D4D0 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		EB109BAB1A53BDB800F1D4D0 /* background01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background01.png; sourceTree = "<group>"; };
 		EB5320A91A53C0C200396780 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		EB5320AB1A53CCE600396780 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB5320AC1A53CCE600396780 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +72,7 @@
 		EB109B711A53B61A00F1D4D0 = {
 			isa = PBXGroup;
 			children = (
+				EB5320AB1A53CCE600396780 /* AVFoundation.framework */,
 				EB109B7C1A53B61A00F1D4D0 /* Snooze */,
 				EB109B921A53B61A00F1D4D0 /* SnoozeTests */,
 				EB109B7B1A53B61A00F1D4D0 /* Products */,
