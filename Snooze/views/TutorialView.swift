@@ -23,6 +23,7 @@ class TutorialView: UIView {
     var previewLayer: AVCaptureVideoPreviewLayer!
     var captureDevice: AVCaptureDevice!
     var stillImageOutput: AVCaptureStillImageOutput!
+    var imageTaken: UIImage!
     
     var cameraView: UIView!
     var cameraLayer: UIView!
@@ -46,11 +47,11 @@ class TutorialView: UIView {
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
         
-        var sgr = UISwipeGestureRecognizer(target: self, action: "changeView:")
+        var sgr = UISwipeGestureRecognizer(target: self, action: "changeViewGestureRecognizer:")
         sgr.direction = .Left
         self.addGestureRecognizer(sgr)
         
-        var rsgr = UISwipeGestureRecognizer(target: self, action: "changeView:")
+        var rsgr = UISwipeGestureRecognizer(target: self, action: "changeViewGestureRecognizer:")
         rsgr.direction = .Right
         self.addGestureRecognizer(rsgr)
         
@@ -62,25 +63,29 @@ class TutorialView: UIView {
         initializeCamera()
     }
     
-    func changeView(sgr: UISwipeGestureRecognizer!) {
-        if currentView == 0 && sgr.direction == .Right {
+    func changeViewGestureRecognizer(sgr: UISwipeGestureRecognizer!) {
+        changeView(sgr.direction == .Left)
+    }
+    
+    func changeView(next: Bool) {
+        if currentView == 0 && !next {
             return
         }
         
-        if sgr.direction == .Right {
-            UIView.animateWithDuration(0.5, animations: { () -> Void in
-                self.welcomeView.frame.origin.x += deviceSize.width
-                self.cameraView.frame.origin.x += deviceSize.width
-            })
-            
-            currentView -= 1
-        } else {
+        if next {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.welcomeView.frame.origin.x -= deviceSize.width
                 self.cameraView.frame.origin.x -= deviceSize.width
             })
             
             currentView += 1
+        } else {
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.welcomeView.frame.origin.x += deviceSize.width
+                self.cameraView.frame.origin.x += deviceSize.width
+            })
+            
+            currentView -= 1
         }
         
         firstDot.image = UIImage(named: "image02.png")
@@ -167,6 +172,7 @@ class TutorialView: UIView {
         retryButton.imageEdgeInsets = UIEdgeInsetsMake(14, ((deviceSize.width / 2) - (32 * (115 / 103))) / 2, 14, ((deviceSize.width / 2) - (32 * (115 / 103))) / 2)
         retryButton.alpha = 0
         retryButton.userInteractionEnabled = false
+        retryButton.addTarget(self, action: "retryButtonAction", forControlEvents: .TouchUpInside)
         
         finishedButton = BFPaperButton(frame: CGRectMake(deviceSize.width / 2, deviceSize.height - 120, deviceSize.width / 2, 60), raised: false)
         finishedButton.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.6)
@@ -175,6 +181,7 @@ class TutorialView: UIView {
         finishedButton.imageEdgeInsets = UIEdgeInsetsMake(14, ((deviceSize.width / 2) - (32 * (115 / 103))) / 2, 14, ((deviceSize.width / 2) - (32 * (115 / 103))) / 2)
         finishedButton.alpha = 0
         finishedButton.userInteractionEnabled = false
+        finishedButton.addTarget(self, action: "finishedButtonAction", forControlEvents: .TouchUpInside)
         
         var dividerImage = UIImage(named: "image06.png")
         divider = UIImageView(image: dividerImage)
@@ -240,12 +247,6 @@ class TutorialView: UIView {
         
         captureSession.addInput(AVCaptureDeviceInput(device: captureDevice, error: nil))
         
-        startCamera()
-        
-        return true
-    }
-    
-    func startCamera() {
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         cameraLayer.layer.addSublayer(previewLayer)
         previewLayer.frame = CGRectMake(0, 0, deviceSize.width, deviceSize.height)
@@ -255,10 +256,8 @@ class TutorialView: UIView {
         captureSession.addOutput(stillImageOutput)
         
         captureSession.startRunning()
-    }
-    
-    func stopCamera() {
-        captureSession.stopRunning()
+        
+        return true
     }
     
     func hideTooltip() {
@@ -287,14 +286,12 @@ class TutorialView: UIView {
         
         stillImageOutput.captureStillImageAsynchronouslyFromConnection(videoConnection, completionHandler: { (imageSampleBuffer, error) -> Void in
             var data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageSampleBuffer)
-            self.finishedImage.image = UIImage(data: data)
-            self.stopCamera()
+            self.imageTaken = UIImage(data: data)
+            self.finishedImage.image = self.imageTaken
             
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.finishedImage.alpha = 1
-            }) { (done) -> Void in
-                self.stopCamera()
-            }
+            })
         })
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
@@ -306,5 +303,25 @@ class TutorialView: UIView {
             self.retryButton.userInteractionEnabled = true
             self.finishedButton.userInteractionEnabled = true
         }
+    }
+    
+    func retryButtonAction() {
+        self.retryButton.userInteractionEnabled = false
+        self.finishedButton.userInteractionEnabled = false
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.cameraButton.alpha = 1
+            self.retryButton.alpha = 0
+            self.divider.alpha = 0
+            self.finishedButton.alpha = 0
+            
+            self.finishedImage.alpha = 0
+        }) { (done) -> Void in
+            self.cameraButton.userInteractionEnabled = true
+        }
+    }
+    
+    func finishedButtonAction() {
+        changeView(true)
     }
 }
