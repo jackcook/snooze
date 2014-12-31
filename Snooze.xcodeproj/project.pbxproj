@@ -8,11 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		EB109B801A53B61A00F1D4D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB109B7F1A53B61A00F1D4D0 /* AppDelegate.swift */; };
-		EB109B821A53B61A00F1D4D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB109B811A53B61A00F1D4D0 /* ViewController.swift */; };
+		EB109B821A53B61A00F1D4D0 /* SnoozeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB109B811A53B61A00F1D4D0 /* SnoozeViewController.swift */; };
 		EB109B851A53B61A00F1D4D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB109B831A53B61A00F1D4D0 /* Main.storyboard */; };
 		EB109B871A53B61A00F1D4D0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB109B861A53B61A00F1D4D0 /* Images.xcassets */; };
 		EB109B8A1A53B61A00F1D4D0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB109B881A53B61A00F1D4D0 /* LaunchScreen.xib */; };
 		EB109B961A53B61A00F1D4D0 /* SnoozeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB109B951A53B61A00F1D4D0 /* SnoozeTests.swift */; };
+		EB109BA71A53BB8400F1D4D0 /* image01.png in Resources */ = {isa = PBXBuildFile; fileRef = EB109BA51A53BB8400F1D4D0 /* image01.png */; };
+		EB109BA81A53BB8400F1D4D0 /* image02.png in Resources */ = {isa = PBXBuildFile; fileRef = EB109BA61A53BB8400F1D4D0 /* image02.png */; };
+		EB109BAA1A53BC1800F1D4D0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB109BA91A53BC1800F1D4D0 /* Common.swift */; };
+		EB109BAC1A53BDB800F1D4D0 /* background01.png in Resources */ = {isa = PBXBuildFile; fileRef = EB109BAB1A53BDB800F1D4D0 /* background01.png */; };
+		EB5320AA1A53C0C200396780 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5320A91A53C0C200396780 /* TutorialView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +34,18 @@
 		EB109B7A1A53B61A00F1D4D0 /* Snooze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snooze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB109B7E1A53B61A00F1D4D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB109B7F1A53B61A00F1D4D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EB109B811A53B61A00F1D4D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EB109B811A53B61A00F1D4D0 /* SnoozeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SnoozeViewController.swift; path = ../SnoozeViewController.swift; sourceTree = "<group>"; };
 		EB109B841A53B61A00F1D4D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB109B861A53B61A00F1D4D0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EB109B891A53B61A00F1D4D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EB109B8F1A53B61A00F1D4D0 /* SnoozeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnoozeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB109B941A53B61A00F1D4D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB109B951A53B61A00F1D4D0 /* SnoozeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnoozeTests.swift; sourceTree = "<group>"; };
+		EB109BA51A53BB8400F1D4D0 /* image01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image01.png; sourceTree = "<group>"; };
+		EB109BA61A53BB8400F1D4D0 /* image02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image02.png; sourceTree = "<group>"; };
+		EB109BA91A53BC1800F1D4D0 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		EB109BAB1A53BDB800F1D4D0 /* background01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background01.png; sourceTree = "<group>"; };
+		EB5320A91A53C0C200396780 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +87,14 @@
 		EB109B7C1A53B61A00F1D4D0 /* Snooze */ = {
 			isa = PBXGroup;
 			children = (
+				EB109BA41A53BB8400F1D4D0 /* images */,
+				EB109BA11A53B86900F1D4D0 /* views */,
 				EB109B7F1A53B61A00F1D4D0 /* AppDelegate.swift */,
-				EB109B811A53B61A00F1D4D0 /* ViewController.swift */,
 				EB109B831A53B61A00F1D4D0 /* Main.storyboard */,
 				EB109B861A53B61A00F1D4D0 /* Images.xcassets */,
 				EB109B881A53B61A00F1D4D0 /* LaunchScreen.xib */,
 				EB109B7D1A53B61A00F1D4D0 /* Supporting Files */,
+				EB109BA91A53BC1800F1D4D0 /* Common.swift */,
 			);
 			path = Snooze;
 			sourceTree = "<group>";
@@ -110,6 +122,25 @@
 				EB109B941A53B61A00F1D4D0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EB109BA11A53B86900F1D4D0 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				EB109B811A53B61A00F1D4D0 /* SnoozeViewController.swift */,
+				EB5320A91A53C0C200396780 /* TutorialView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		EB109BA41A53BB8400F1D4D0 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				EB109BAB1A53BDB800F1D4D0 /* background01.png */,
+				EB109BA51A53BB8400F1D4D0 /* image01.png */,
+				EB109BA61A53BB8400F1D4D0 /* image02.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +225,9 @@
 			files = (
 				EB109B851A53B61A00F1D4D0 /* Main.storyboard in Resources */,
 				EB109B8A1A53B61A00F1D4D0 /* LaunchScreen.xib in Resources */,
+				EB109BA71A53BB8400F1D4D0 /* image01.png in Resources */,
+				EB109BA81A53BB8400F1D4D0 /* image02.png in Resources */,
+				EB109BAC1A53BDB800F1D4D0 /* background01.png in Resources */,
 				EB109B871A53B61A00F1D4D0 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +246,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB109B821A53B61A00F1D4D0 /* ViewController.swift in Sources */,
+				EB5320AA1A53C0C200396780 /* TutorialView.swift in Sources */,
+				EB109BAA1A53BC1800F1D4D0 /* Common.swift in Sources */,
+				EB109B821A53B61A00F1D4D0 /* SnoozeViewController.swift in Sources */,
 				EB109B801A53B61A00F1D4D0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +441,7 @@
 				EB109B9B1A53B61A00F1D4D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB109B9C1A53B61A00F1D4D0 /* Build configuration list for PBXNativeTarget "SnoozeTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +450,7 @@
 				EB109B9E1A53B61A00F1D4D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
