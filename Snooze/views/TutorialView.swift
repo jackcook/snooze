@@ -27,6 +27,9 @@ class TutorialView: UIView {
     var cameraLayer: UIView!
     var dotsBackground: UIView!
     var cameraButton: BFPaperButton!
+    var retryButton: BFPaperButton!
+    var finishedButton: BFPaperButton!
+    var divider: UIImageView!
     var cameraTooltip: UIImageView!
     var tooltipTitle: UILabel!
     var tooltipBody: UILabel!
@@ -150,6 +153,28 @@ class TutorialView: UIView {
         cameraButton.setImage(UIImage(named: "image03.png"), forState: .Normal)
         cameraButton.setImage(UIImage(named: "image03.png"), forState: .Highlighted)
         cameraButton.imageEdgeInsets = UIEdgeInsetsMake(10, (deviceSize.width - (40 * (163 / 137))) / 2, 10, (deviceSize.width - (40 * (163 / 137))) / 2)
+        cameraButton.addTarget(self, action: "cameraButtonAction", forControlEvents: .TouchUpInside)
+        
+        retryButton = BFPaperButton(frame: CGRectMake(0, deviceSize.height - 120, deviceSize.width / 2, 60), raised: false)
+        retryButton.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.6)
+        retryButton.setImage(UIImage(named: "image05.png"), forState: .Normal)
+        retryButton.setImage(UIImage(named: "image05.png"), forState: .Highlighted)
+        retryButton.imageEdgeInsets = UIEdgeInsetsMake(14, ((deviceSize.width / 2) - (32 * (115 / 103))) / 2, 14, ((deviceSize.width / 2) - (32 * (115 / 103))) / 2)
+        retryButton.alpha = 0
+        retryButton.userInteractionEnabled = false
+        
+        finishedButton = BFPaperButton(frame: CGRectMake(deviceSize.width / 2, deviceSize.height - 120, deviceSize.width / 2, 60), raised: false)
+        finishedButton.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.6)
+        finishedButton.setImage(UIImage(named: "image07.png"), forState: .Normal)
+        finishedButton.setImage(UIImage(named: "image07.png"), forState: .Highlighted)
+        finishedButton.imageEdgeInsets = UIEdgeInsetsMake(14, ((deviceSize.width / 2) - (32 * (115 / 103))) / 2, 14, ((deviceSize.width / 2) - (32 * (115 / 103))) / 2)
+        finishedButton.alpha = 0
+        finishedButton.userInteractionEnabled = false
+        
+        var dividerImage = UIImage(named: "image06.png")
+        divider = UIImageView(image: dividerImage)
+        divider.frame = CGRectMake((deviceSize.width - 2) / 2, deviceSize.height - 110, 2, 40)
+        divider.alpha = 0
         
         var image = UIImage(named: "image04.png")
         cameraTooltip = UIImageView(image: image)
@@ -179,6 +204,9 @@ class TutorialView: UIView {
         cameraView.addSubview(cameraLayer)
         cameraView.addSubview(dotsBackground)
         cameraView.addSubview(cameraButton)
+        cameraView.addSubview(retryButton)
+        cameraView.addSubview(finishedButton)
+        cameraView.addSubview(divider)
         cameraView.addSubview(cameraTooltip)
         cameraTooltip.addSubview(tooltipTitle)
         cameraTooltip.addSubview(tooltipBody)
@@ -219,6 +247,20 @@ class TutorialView: UIView {
             self.cameraTooltip.alpha = 0
         }) { (done) -> Void in
             self.cameraTooltip.removeFromSuperview()
+        }
+    }
+    
+    func cameraButtonAction() {
+        cameraButton.userInteractionEnabled = false
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.cameraButton.alpha = 0
+            self.retryButton.alpha = 1
+            self.divider.alpha = 1
+            self.finishedButton.alpha = 1
+        }) { (done) -> Void in
+            self.retryButton.userInteractionEnabled = true
+            self.finishedButton.userInteractionEnabled = true
         }
     }
 }
