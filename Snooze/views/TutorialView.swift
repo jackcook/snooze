@@ -41,28 +41,51 @@ class TutorialView: UIView {
         rsgr.direction = .Right
         self.addGestureRecognizer(rsgr)
         
-        drawDots()
         drawWelcome()
         drawCamera()
+        
+        drawDots()
         
         initializeCamera()
     }
     
     func changeView(sgr: UISwipeGestureRecognizer!) {
+        if currentView == 0 && sgr.direction == .Right {
+            return
+        }
+        
         if sgr.direction == .Right {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.welcomeView.frame.origin.x += deviceSize.width
                 self.cameraView.frame.origin.x += deviceSize.width
             })
             
-            currentView += 1
+            currentView -= 1
         } else {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.welcomeView.frame.origin.x -= deviceSize.width
                 self.cameraView.frame.origin.x -= deviceSize.width
             })
             
-            currentView -= 1
+            currentView += 1
+        }
+        
+        firstDot.image = UIImage(named: "image02.png")
+        secondDot.image = UIImage(named: "image02.png")
+        thirdDot.image = UIImage(named: "image02.png")
+        fourthDot.image = UIImage(named: "image02.png")
+        fifthDot.image = UIImage(named: "image02.png")
+        
+        if currentView == 0 {
+            firstDot.image = UIImage(named: "image01.png")
+        } else if currentView == 1 {
+            secondDot.image = UIImage(named: "image01.png")
+        } else if currentView == 2 {
+            thirdDot.image = UIImage(named: "image01.png")
+        } else if currentView == 3 {
+            fourthDot.image = UIImage(named: "image01.png")
+        } else {
+            fifthDot.image = UIImage(named: "image01.png")
         }
     }
     
@@ -109,7 +132,7 @@ class TutorialView: UIView {
         self.addSubview(cameraView)
     }
     
-    func initializeCamera() {
+    func initializeCamera() -> Bool {
         captureSession = AVCaptureSession()
         captureSession.sessionPreset = AVCaptureSessionPresetHigh
         
@@ -121,11 +144,17 @@ class TutorialView: UIView {
             }
         }
         
+        if captureDevice == nil {
+            return false
+        }
+        
         captureSession.addInput(AVCaptureDeviceInput(device: captureDevice, error: nil))
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.cameraView.layer.addSublayer(previewLayer)
         previewLayer.frame = CGRectMake(0, 0, deviceSize.width, deviceSize.height)
         captureSession.startRunning()
+        
+        return true
     }
 }
