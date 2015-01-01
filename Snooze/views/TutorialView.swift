@@ -53,6 +53,11 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     var hours = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
     var minutes = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"]
     
+    var congratsView: UIView!
+    var congratsBackground: UIImageView!
+    var congratsDoneButton: UIButton!
+    var congratsDotsBackground: UIView!
+    
     var currentView = 0
     
     required init(coder aDecoder: NSCoder) {
@@ -73,6 +78,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         drawWelcome()
         drawCamera()
         drawAlarm()
+        drawCongrats()
         
         drawDots()
         
@@ -93,6 +99,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
                 self.welcomeView.frame.origin.x -= deviceSize.width
                 self.cameraView.frame.origin.x -= deviceSize.width
                 self.alarmView.frame.origin.x -= deviceSize.width
+                self.congratsView.frame.origin.x -= deviceSize.width
             })
             
             currentView += 1
@@ -101,6 +108,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
                 self.welcomeView.frame.origin.x += deviceSize.width
                 self.cameraView.frame.origin.x += deviceSize.width
                 self.alarmView.frame.origin.x += deviceSize.width
+                self.congratsView.frame.origin.x += deviceSize.width
             })
             
             currentView -= 1
@@ -429,5 +437,33 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         }
         
         am = !am
+    }
+    
+    func drawCongrats() {
+        congratsView = UIView(frame: CGRectMake(deviceSize.width * 3, 0, deviceSize.width, deviceSize.height))
+        
+        congratsBackground = UIImageView(frame: self.bounds)
+        congratsBackground.image = UIImage(named: "background02.png")
+        
+        congratsDoneButton = UIButton()
+        congratsDoneButton.setTitle("START", forState: .Normal)
+        congratsDoneButton.setTitleColor(UIColor(red: 0.55, green: 0.8, blue: 0.46, alpha: 1), forState: .Normal)
+        congratsDoneButton.setTitleColor(UIColor(red: 0.33, green: 0.49, blue: 0.24, alpha: 1), forState: .Highlighted)
+        congratsDoneButton.titleLabel?.font = UIFont(name: "GillSans-Italic", size: 20)
+        congratsDoneButton.addTarget(self, action: "congratsDoneButtonAction", forControlEvents: .TouchUpInside)
+        congratsDoneButton.sizeToFit()
+        congratsDoneButton.frame = CGRectMake((deviceSize.width - congratsDoneButton.frame.size.width) / 2, ((deviceSize.height - congratsDoneButton.frame.size.height) / 2) + (deviceSize.height / 4), congratsDoneButton.frame.size.width, congratsDoneButton.frame.size.height)
+        
+        congratsDotsBackground = UIView(frame: CGRectMake(0, deviceSize.height - 60, deviceSize.width, 60))
+        congratsDotsBackground.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.8)
+        
+        congratsView.addSubview(congratsBackground)
+        congratsView.addSubview(congratsDoneButton)
+        congratsView.addSubview(congratsDotsBackground)
+        self.addSubview(congratsView)
+    }
+    
+    func congratsDoneButtonAction() {
+        // success!
     }
 }

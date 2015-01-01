@@ -30,6 +30,7 @@
 		EB48C6C41A54CD9200E1B32B /* image12.png in Resources */ = {isa = PBXBuildFile; fileRef = EB48C6BF1A54CD9200E1B32B /* image12.png */; };
 		EB5320AA1A53C0C200396780 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5320A91A53C0C200396780 /* TutorialView.swift */; };
 		EB5320AC1A53CCE600396780 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5320AB1A53CCE600396780 /* AVFoundation.framework */; };
+		EBE231961A550266006DBCE4 /* background02.png in Resources */ = {isa = PBXBuildFile; fileRef = EBE231951A550266006DBCE4 /* background02.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		EB48C6BF1A54CD9200E1B32B /* image12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image12.png; sourceTree = "<group>"; };
 		EB5320A91A53C0C200396780 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		EB5320AB1A53CCE600396780 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EBE231951A550266006DBCE4 /* background02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background02.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				EB109BAB1A53BDB800F1D4D0 /* background01.png */,
+				EBE231951A550266006DBCE4 /* background02.png */,
 				EB109BA51A53BB8400F1D4D0 /* image01.png */,
 				EB109BA61A53BB8400F1D4D0 /* image02.png */,
 				EB0B1B9D1A54376E00BB47AC /* image03.png */,
@@ -308,6 +311,7 @@
 				EB109BA81A53BB8400F1D4D0 /* image02.png in Resources */,
 				EB48C6B61A5492C200E1B32B /* image05.png in Resources */,
 				EB0B1BA01A54376E00BB47AC /* image04.png in Resources */,
+				EBE231961A550266006DBCE4 /* background02.png in Resources */,
 				EB109BAC1A53BDB800F1D4D0 /* background01.png in Resources */,
 				EB109B871A53B61A00F1D4D0 /* Images.xcassets in Resources */,
 				EB48C6B71A5492C200E1B32B /* image06.png in Resources */,
