@@ -38,6 +38,8 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     var tooltipBody: UILabel!
     var tooltipDoneButton: UIButton!
     
+    var am = true
+    
     var alarmView: UIView!
     var alarmTitle: UILabel!
     var alarmClockImage: UIImageView!
@@ -355,14 +357,14 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         var y = alarmTitle.frame.size.height
         var contentRect = CGRectMake(0, y, deviceSize.width, deviceSize.height - y - 60 - (deviceSize.width / (16 / 9)))
         
-        alarmClockImage = UIImageView(frame: CGRectMake((((deviceSize.width / 2) - 64) / 2) - 16, contentRect.origin.y + ((contentRect.size.height - 64) / 2), 64, 64))
+        alarmClockImage = UIImageView(frame: CGRectMake((deviceSize.width / 4) - 48, contentRect.origin.y + ((contentRect.size.height - 56) / 2), 56, 56))
         alarmClockImage.image = UIImage(named: "image08.png")
         
         alarmHourPicker = UIPickerView(frame: CGRectMake((deviceSize.width / 2) - 72, contentRect.origin.y + ((contentRect.size.height - 164) / 2), 72, 100))
         alarmHourPicker.tag = 0
         alarmHourPicker.delegate = self
         alarmHourPicker.dataSource = self
-        alarmHourPicker.selectRow(6, inComponent: 0, animated: false)
+        alarmHourPicker.selectRow(5, inComponent: 0, animated: false)
         
         alarmDivider = UIImageView(frame: CGRectMake((deviceSize.width - 2) / 2, contentRect.origin.y + (contentRect.size.height - (contentRect.size.height / 3)) / 2, 2, contentRect.size.height / 3))
         alarmDivider.image = UIImage(named: "image09.png")
@@ -372,6 +374,11 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         alarmMinutePicker.delegate = self
         alarmMinutePicker.dataSource = self
         alarmMinutePicker.selectRow(30, inComponent: 0, animated: false)
+        
+        alarmAMPMButton = UIButton(frame: CGRectMake(((deviceSize.width / 4) * 3) - 10, contentRect.origin.y + ((contentRect.size.height - 30) / 2), 24, 30))
+        alarmAMPMButton.setImage(UIImage(named: "image10.png"), forState: .Normal)
+        alarmAMPMButton.setImage(UIImage(named: "image10.png"), forState: .Highlighted)
+        alarmAMPMButton.addTarget(self, action: "alarmAMPMButtonAction", forControlEvents: .TouchUpInside)
         
         alarmImage = UIImageView(frame: CGRectMake(0, deviceSize.height - 60 - (deviceSize.width / (16 / 9)), deviceSize.width, deviceSize.width / (16 / 9)))
         alarmImage.backgroundColor = UIColor.blackColor()
@@ -384,6 +391,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         alarmView.addSubview(alarmHourPicker)
         alarmView.addSubview(alarmDivider)
         alarmView.addSubview(alarmMinutePicker)
+        alarmView.addSubview(alarmAMPMButton)
         alarmView.addSubview(alarmImage)
         alarmView.addSubview(alarmDotsBackground)
         self.addSubview(alarmView)
@@ -414,5 +422,17 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
             label.font = UIFont(name: "GillSans-Light", size: 36)
             return label
         }
+    }
+    
+    func alarmAMPMButtonAction() {
+        if am {
+            alarmAMPMButton.setImage(UIImage(named: "image11.png"), forState: .Normal)
+            alarmAMPMButton.setImage(UIImage(named: "image11.png"), forState: .Highlighted)
+        } else {
+            alarmAMPMButton.setImage(UIImage(named: "image10.png"), forState: .Normal)
+            alarmAMPMButton.setImage(UIImage(named: "image10.png"), forState: .Highlighted)
+        }
+        
+        am = !am
     }
 }
