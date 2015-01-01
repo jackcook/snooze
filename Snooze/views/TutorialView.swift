@@ -94,6 +94,12 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
             return
         }
         
+        if let img = imageTaken {} else {
+            if currentView == 1 && next {
+                return
+            }
+        }
+        
         if next {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.welcomeView.frame.origin.x -= deviceSize.width
