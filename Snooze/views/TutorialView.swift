@@ -84,11 +84,12 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         rsgr.direction = .Right
         self.addGestureRecognizer(rsgr)
         
-        drawDots()
         drawWelcome()
         drawCamera()
         drawAlarm()
         drawCongrats()
+        
+        drawDots()
             
         initializeCamera()
     }
