@@ -106,6 +106,10 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
             }
         }
         
+        if currentView == 3 && next {
+            return
+        }
+        
         if next {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.welcomeView.frame.origin.x -= deviceSize.width
