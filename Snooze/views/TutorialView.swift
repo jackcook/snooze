@@ -13,6 +13,9 @@ import UIKit
 
 class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    var currentView = 0
+    var night = false
+    
     var welcomeView: UIView!
     var background: UIImageView!
     var firstDot: UIImageView!
@@ -58,14 +61,17 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     var congratsBackground: UIImageView!
     var congratsDoneButton: UIButton!
     
-    var currentView = 0
-    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
+        
+        var calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
+        var comps = calendar?.components(.HourCalendarUnit, fromDate: NSDate())
+        var hour = comps!.hour
+        night = hour <= 7 || hour >= 21
         
         var sgr = UISwipeGestureRecognizer(target: self, action: "changeViewGestureRecognizer:")
         sgr.direction = .Left
@@ -166,7 +172,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         welcomeView = UIView(frame: CGRectMake(0, 0, deviceSize.width, deviceSize.height))
         
         background = UIImageView(frame: self.bounds)
-        background.image = UIImage(named: "background01.png")
+        background.image = UIImage(named: night ? "background101.png" : "background01.png")
         
         welcomeView.addSubview(background)
         self.addSubview(welcomeView)
@@ -214,14 +220,14 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         divider.frame = CGRectMake((deviceSize.width - 2) / 2, deviceSize.height - 110, 2, 40)
         divider.alpha = 0
         
-        var image = UIImage(named: "image04.png")
+        var image = UIImage(named: night ? "image104.png" : "image04.png")
         cameraTooltip = UIImageView(image: image)
         cameraTooltip.frame = CGRectMake((deviceSize.width - (image!.size.width * 0.3)) / 2, deviceSize.height - (image!.size.height * 0.3) - 114, image!.size.width * 0.3, image!.size.height * 0.3)
         
         tooltipTitle = UILabel()
         tooltipTitle.text = "TAKE A PHOTO"
         tooltipTitle.font = UIFont(name: "GillSans-Light", size: 24)
-        tooltipTitle.textColor = UIColor(red: 0.39, green: 0.39, blue: 0.39, alpha: 1)
+        tooltipTitle.textColor = night ? UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1) : UIColor(red: 0.39, green: 0.39, blue: 0.39, alpha: 1)
         tooltipTitle.sizeToFit()
         tooltipTitle.frame = CGRectMake((cameraTooltip.frame.size.width - tooltipTitle.frame.size.width) / 2, 24, tooltipTitle.frame.size.width, tooltipTitle.frame.size.height)
         
@@ -229,6 +235,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         tooltipBody.numberOfLines = 0
         tooltipBody.text = "Snooze will compare this photo to other photos you take when you wake up in order to turn off the alarm."
         tooltipBody.font = UIFont(name: "GillSans-Light", size: 16)
+        tooltipBody.textColor = night ? UIColor(red: 0.76, green: 0.76, blue: 0.76, alpha: 1) : UIColor(red: 0.29, green: 0.29, blue: 0.29, alpha: 1)
         
         tooltipDoneButton = UIButton()
         tooltipDoneButton.setTitle("OK", forState: .Normal)
@@ -353,11 +360,12 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     
     func drawAlarm() {
         alarmView = UIView(frame: CGRectMake(deviceSize.width * 2, 0, deviceSize.width, deviceSize.height))
+        alarmView.backgroundColor = night ? UIColor(red: 0.11, green: 0.11, blue: 0.11, alpha: 1) : UIColor.whiteColor()
         
         alarmTitle = UILabel()
         alarmTitle.text = "SET YOUR ALARM"
         alarmTitle.font = UIFont(name: "GillSans-Light", size: 24)
-        alarmTitle.textColor = UIColor(red: 0.39, green: 0.39, blue: 0.39, alpha: 1)
+        alarmTitle.textColor = night ? UIColor(red: 0.59, green: 0.59, blue: 0.59, alpha: 1) : UIColor(red: 0.39, green: 0.39, blue: 0.39, alpha: 1)
         alarmTitle.sizeToFit()
         alarmTitle.frame = CGRectMake((deviceSize.width - alarmTitle.frame.size.width) / 2, 36, alarmTitle.frame.size.width, alarmTitle.frame.size.height)
         
@@ -374,7 +382,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         alarmHourPicker.selectRow(5, inComponent: 0, animated: false)
         
         alarmDivider = UIImageView(frame: CGRectMake((deviceSize.width - 2) / 2, contentRect.origin.y + (contentRect.size.height - (contentRect.size.height / 3)) / 2, 2, contentRect.size.height / 3))
-        alarmDivider.image = UIImage(named: "image09.png")
+        alarmDivider.image = UIImage(named: night ? "image109.png" : "image09.png")
         
         alarmMinutePicker = UIPickerView(frame: CGRectMake(deviceSize.width / 2, contentRect.origin.y + ((contentRect.size.height - 164) / 2), 72, 100))
         alarmMinutePicker.tag = 1
@@ -424,6 +432,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
             var label = UILabel()
             label.text = pickerView.tag == 0 ? hours[row] : minutes[row]
             label.textAlignment = .Center
+            label.textColor = night ? UIColor(red: 0.62, green: 0.62, blue: 0.62, alpha: 1) : UIColor.blackColor()
             label.font = UIFont(name: "GillSans-Light", size: 36)
             return label
         }
@@ -431,11 +440,11 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     
     func alarmAMPMButtonAction() {
         if am {
-            alarmAMPMButton.setImage(UIImage(named: "image11.png"), forState: .Normal)
-            alarmAMPMButton.setImage(UIImage(named: "image11.png"), forState: .Highlighted)
+            alarmAMPMButton.setImage(UIImage(named: night ? "image111.png" : "image11.png"), forState: .Normal)
+            alarmAMPMButton.setImage(UIImage(named: night ? "image111.png" : "image11.png"), forState: .Highlighted)
         } else {
-            alarmAMPMButton.setImage(UIImage(named: "image10.png"), forState: .Normal)
-            alarmAMPMButton.setImage(UIImage(named: "image10.png"), forState: .Highlighted)
+            alarmAMPMButton.setImage(UIImage(named: night ? "image110.png" : "image10.png"), forState: .Normal)
+            alarmAMPMButton.setImage(UIImage(named: night ? "image110.png" : "image10.png"), forState: .Highlighted)
         }
         
         am = !am
@@ -445,7 +454,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         congratsView = UIView(frame: CGRectMake(deviceSize.width * 3, 0, deviceSize.width, deviceSize.height))
         
         congratsBackground = UIImageView(frame: self.bounds)
-        congratsBackground.image = UIImage(named: "background02.png")
+        congratsBackground.image = UIImage(named: night ? "background102.png" : "background02.png")
         
         congratsDoneButton = UIButton()
         congratsDoneButton.setTitle("START", forState: .Normal)
