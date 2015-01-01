@@ -13,7 +13,10 @@ class SnoozeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var tutorial = TutorialView()
-        self.view.addSubview(tutorial)
+        var clock = ClockView()
+        self.view.addSubview(clock)
+        
+        //var tutorial = TutorialView()
+        //self.view.addSubview(tutorial)
     }
 }

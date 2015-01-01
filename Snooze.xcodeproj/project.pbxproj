@@ -37,6 +37,9 @@
 		EB6811DA1A5524990066B09D /* image111.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6811D61A5524990066B09D /* image111.png */; };
 		EB6811DB1A5524990066B09D /* image112.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6811D71A5524990066B09D /* image112.png */; };
 		EB6811DD1A552BC10066B09D /* background102.png in Resources */ = {isa = PBXBuildFile; fileRef = EB6811DC1A552BC10066B09D /* background102.png */; };
+		EB8F9B831A559E5C002EA611 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F9B821A559E5C002EA611 /* ClockView.swift */; };
+		EB8F9B861A55A42F002EA611 /* image13.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8F9B841A55A42F002EA611 /* image13.png */; };
+		EB8F9B871A55A42F002EA611 /* image14.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8F9B851A55A42F002EA611 /* image14.png */; };
 		EBE231961A550266006DBCE4 /* background02.png in Resources */ = {isa = PBXBuildFile; fileRef = EBE231951A550266006DBCE4 /* background02.png */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +92,9 @@
 		EB6811D61A5524990066B09D /* image111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image111.png; sourceTree = "<group>"; };
 		EB6811D71A5524990066B09D /* image112.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image112.png; sourceTree = "<group>"; };
 		EB6811DC1A552BC10066B09D /* background102.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background102.png; sourceTree = "<group>"; };
+		EB8F9B821A559E5C002EA611 /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		EB8F9B841A55A42F002EA611 /* image13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image13.png; sourceTree = "<group>"; };
+		EB8F9B851A55A42F002EA611 /* image14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image14.png; sourceTree = "<group>"; };
 		EBE231951A550266006DBCE4 /* background02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background02.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,6 +203,7 @@
 			children = (
 				EB48C6AE1A547AE700E1B32B /* SnoozeViewController.swift */,
 				EB5320A91A53C0C200396780 /* TutorialView.swift */,
+				EB8F9B821A559E5C002EA611 /* ClockView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -220,6 +227,8 @@
 				EB48C6BD1A54CD9200E1B32B /* image10.png */,
 				EB48C6BE1A54CD9200E1B32B /* image11.png */,
 				EB48C6BF1A54CD9200E1B32B /* image12.png */,
+				EB8F9B841A55A42F002EA611 /* image13.png */,
+				EB8F9B851A55A42F002EA611 /* image14.png */,
 				EB6811D21A5521D50066B09D /* image104.png */,
 				EB6811D41A5524990066B09D /* image109.png */,
 				EB6811D51A5524990066B09D /* image110.png */,
@@ -319,6 +328,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB8F9B861A55A42F002EA611 /* image13.png in Resources */,
 				EB0B1B9F1A54376E00BB47AC /* image03.png in Resources */,
 				EB6811DB1A5524990066B09D /* image112.png in Resources */,
 				EB109B851A53B61A00F1D4D0 /* Main.storyboard in Resources */,
@@ -338,6 +348,7 @@
 				EB6811D81A5524990066B09D /* image109.png in Resources */,
 				EB6811D31A5521D50066B09D /* image104.png in Resources */,
 				EB0B1BA01A54376E00BB47AC /* image04.png in Resources */,
+				EB8F9B871A55A42F002EA611 /* image14.png in Resources */,
 				EBE231961A550266006DBCE4 /* background02.png in Resources */,
 				EB109BAC1A53BDB800F1D4D0 /* background01.png in Resources */,
 				EB109B871A53B61A00F1D4D0 /* Images.xcassets in Resources */,
@@ -394,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB5320AA1A53C0C200396780 /* TutorialView.swift in Sources */,
+				EB8F9B831A559E5C002EA611 /* ClockView.swift in Sources */,
 				EB109BAA1A53BC1800F1D4D0 /* Common.swift in Sources */,
 				EB48C6AF1A547AE700E1B32B /* SnoozeViewController.swift in Sources */,
 				EB109B801A53B61A00F1D4D0 /* AppDelegate.swift in Sources */,
