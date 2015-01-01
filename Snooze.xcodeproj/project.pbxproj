@@ -23,6 +23,11 @@
 		EB48C6B61A5492C200E1B32B /* image05.png in Resources */ = {isa = PBXBuildFile; fileRef = EB48C6B31A5492C200E1B32B /* image05.png */; };
 		EB48C6B71A5492C200E1B32B /* image06.png in Resources */ = {isa = PBXBuildFile; fileRef = EB48C6B41A5492C200E1B32B /* image06.png */; };
 		EB48C6B81A5492C200E1B32B /* image07.png in Resources */ = {isa = PBXBuildFile; fileRef = EB48C6B51A5492C200E1B32B /* image07.png */; };
+		EB48C6C01A54CD9200E1B32B /* image08.png in Resources */ = {isa = PBXBuildFile; fileRef = EB48C6BB1A54CD9200E1B32B /* image08.png */; };
+		EB48C6C11A54CD9200E1B32B /* image09.png in Resources */ = {isa = PBXBuildFile; fileRef = EB48C6BC1A54CD9200E1B32B /* image09.png */; };
+		EB48C6C21A54CD9200E1B32B /* image10.png in Resources */ = {isa = PBXBuildFile; fileRef = EB48C6BD1A54CD9200E1B32B /* image10.png */; };
+		EB48C6C31A54CD9200E1B32B /* image11.png in Resources */ = {isa = PBXBuildFile; fileRef = EB48C6BE1A54CD9200E1B32B /* image11.png */; };
+		EB48C6C41A54CD9200E1B32B /* image12.png in Resources */ = {isa = PBXBuildFile; fileRef = EB48C6BF1A54CD9200E1B32B /* image12.png */; };
 		EB5320AA1A53C0C200396780 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5320A91A53C0C200396780 /* TutorialView.swift */; };
 		EB5320AC1A53CCE600396780 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5320AB1A53CCE600396780 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +67,11 @@
 		EB48C6B41A5492C200E1B32B /* image06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image06.png; sourceTree = "<group>"; };
 		EB48C6B51A5492C200E1B32B /* image07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image07.png; sourceTree = "<group>"; };
 		EB48C6B91A549BA600E1B32B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EB48C6BB1A54CD9200E1B32B /* image08.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image08.png; sourceTree = "<group>"; };
+		EB48C6BC1A54CD9200E1B32B /* image09.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image09.png; sourceTree = "<group>"; };
+		EB48C6BD1A54CD9200E1B32B /* image10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image10.png; sourceTree = "<group>"; };
+		EB48C6BE1A54CD9200E1B32B /* image11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image11.png; sourceTree = "<group>"; };
+		EB48C6BF1A54CD9200E1B32B /* image12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image12.png; sourceTree = "<group>"; };
 		EB5320A91A53C0C200396780 /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		EB5320AB1A53CCE600396780 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -186,6 +196,11 @@
 				EB48C6B31A5492C200E1B32B /* image05.png */,
 				EB48C6B41A5492C200E1B32B /* image06.png */,
 				EB48C6B51A5492C200E1B32B /* image07.png */,
+				EB48C6BB1A54CD9200E1B32B /* image08.png */,
+				EB48C6BC1A54CD9200E1B32B /* image09.png */,
+				EB48C6BD1A54CD9200E1B32B /* image10.png */,
+				EB48C6BE1A54CD9200E1B32B /* image11.png */,
+				EB48C6BF1A54CD9200E1B32B /* image12.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -282,9 +297,14 @@
 			files = (
 				EB0B1B9F1A54376E00BB47AC /* image03.png in Resources */,
 				EB109B851A53B61A00F1D4D0 /* Main.storyboard in Resources */,
+				EB48C6C31A54CD9200E1B32B /* image11.png in Resources */,
 				EB109B8A1A53B61A00F1D4D0 /* LaunchScreen.xib in Resources */,
+				EB48C6C41A54CD9200E1B32B /* image12.png in Resources */,
 				EB48C6B81A5492C200E1B32B /* image07.png in Resources */,
+				EB48C6C11A54CD9200E1B32B /* image09.png in Resources */,
 				EB109BA71A53BB8400F1D4D0 /* image01.png in Resources */,
+				EB48C6C21A54CD9200E1B32B /* image10.png in Resources */,
+				EB48C6C01A54CD9200E1B32B /* image08.png in Resources */,
 				EB109BA81A53BB8400F1D4D0 /* image02.png in Resources */,
 				EB48C6B61A5492C200E1B32B /* image05.png in Resources */,
 				EB0B1BA01A54376E00BB47AC /* image04.png in Resources */,

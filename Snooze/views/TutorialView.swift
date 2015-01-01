@@ -9,7 +9,7 @@
 import AVFoundation
 import UIKit
 
-class TutorialView: UIView {
+class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var welcomeView: UIView!
     var background: UIImageView!
@@ -38,6 +38,20 @@ class TutorialView: UIView {
     var tooltipBody: UILabel!
     var tooltipDoneButton: UIButton!
     
+    var alarmView: UIView!
+    var alarmTitle: UILabel!
+    var alarmClockImage: UIImageView!
+    var alarmHourPicker: UIPickerView!
+    var alarmDivider: UIImageView!
+    var alarmMinutePicker: UIPickerView!
+    var alarmAMPMButton: UIButton!
+    var alarmTooltip: UIImageView!
+    var alarmImage: UIImageView!
+    var alarmDotsBackground: UIView!
+    
+    var hours = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+    var minutes = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"]
+    
     var currentView = 0
     
     required init(coder aDecoder: NSCoder) {
@@ -57,6 +71,7 @@ class TutorialView: UIView {
         
         drawWelcome()
         drawCamera()
+        drawAlarm()
         
         drawDots()
         
@@ -76,6 +91,7 @@ class TutorialView: UIView {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.welcomeView.frame.origin.x -= deviceSize.width
                 self.cameraView.frame.origin.x -= deviceSize.width
+                self.alarmView.frame.origin.x -= deviceSize.width
             })
             
             currentView += 1
@@ -83,6 +99,7 @@ class TutorialView: UIView {
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.welcomeView.frame.origin.x += deviceSize.width
                 self.cameraView.frame.origin.x += deviceSize.width
+                self.alarmView.frame.origin.x += deviceSize.width
             })
             
             currentView -= 1
@@ -323,5 +340,79 @@ class TutorialView: UIView {
     
     func finishedButtonAction() {
         changeView(true)
+    }
+    
+    func drawAlarm() {
+        alarmView = UIView(frame: CGRectMake(deviceSize.width * 2, 0, deviceSize.width, deviceSize.height))
+        
+        alarmTitle = UILabel()
+        alarmTitle.text = "SET YOUR ALARM"
+        alarmTitle.font = UIFont(name: "GillSans-Light", size: 24)
+        alarmTitle.textColor = UIColor(red: 0.39, green: 0.39, blue: 0.39, alpha: 1)
+        alarmTitle.sizeToFit()
+        alarmTitle.frame = CGRectMake((deviceSize.width - alarmTitle.frame.size.width) / 2, 36, alarmTitle.frame.size.width, alarmTitle.frame.size.height)
+        
+        var y = alarmTitle.frame.size.height
+        var contentRect = CGRectMake(0, y, deviceSize.width, deviceSize.height - y - 60 - (deviceSize.width / (16 / 9)))
+        
+        alarmClockImage = UIImageView(frame: CGRectMake((((deviceSize.width / 2) - 64) / 2) - 16, contentRect.origin.y + ((contentRect.size.height - 64) / 2), 64, 64))
+        alarmClockImage.image = UIImage(named: "image08.png")
+        
+        alarmHourPicker = UIPickerView(frame: CGRectMake((deviceSize.width / 2) - 72, contentRect.origin.y + ((contentRect.size.height - 164) / 2), 72, 100))
+        alarmHourPicker.tag = 0
+        alarmHourPicker.delegate = self
+        alarmHourPicker.dataSource = self
+        alarmHourPicker.selectRow(6, inComponent: 0, animated: false)
+        
+        alarmDivider = UIImageView(frame: CGRectMake((deviceSize.width - 2) / 2, contentRect.origin.y + (contentRect.size.height - (contentRect.size.height / 3)) / 2, 2, contentRect.size.height / 3))
+        alarmDivider.image = UIImage(named: "image09.png")
+        
+        alarmMinutePicker = UIPickerView(frame: CGRectMake(deviceSize.width / 2, contentRect.origin.y + ((contentRect.size.height - 164) / 2), 72, 100))
+        alarmMinutePicker.tag = 1
+        alarmMinutePicker.delegate = self
+        alarmMinutePicker.dataSource = self
+        alarmMinutePicker.selectRow(30, inComponent: 0, animated: false)
+        
+        alarmImage = UIImageView(frame: CGRectMake(0, deviceSize.height - 60 - (deviceSize.width / (16 / 9)), deviceSize.width, deviceSize.width / (16 / 9)))
+        alarmImage.backgroundColor = UIColor.blackColor()
+        
+        alarmDotsBackground = UIView(frame: CGRectMake(0, deviceSize.height - 60, deviceSize.width, 60))
+        alarmDotsBackground.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.8)
+        
+        alarmView.addSubview(alarmTitle)
+        alarmView.addSubview(alarmClockImage)
+        alarmView.addSubview(alarmHourPicker)
+        alarmView.addSubview(alarmDivider)
+        alarmView.addSubview(alarmMinutePicker)
+        alarmView.addSubview(alarmImage)
+        alarmView.addSubview(alarmDotsBackground)
+        self.addSubview(alarmView)
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerView.tag == 0 ? hours.count : minutes.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 48
+    }
+    
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView!) -> UIView {
+        (pickerView.subviews[1] as UIView).hidden = true
+        (pickerView.subviews[2] as UIView).hidden = true
+        
+        if let label = view as? UILabel {
+            return label
+        } else {
+            var label = UILabel()
+            label.text = pickerView.tag == 0 ? hours[row] : minutes[row]
+            label.textAlignment = .Center
+            label.font = UIFont(name: "GillSans-Light", size: 36)
+            return label
+        }
     }
 }
