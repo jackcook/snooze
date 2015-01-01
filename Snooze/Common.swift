@@ -9,3 +9,5 @@
 import UIKit
 
 let deviceSize = UIScreen.mainScreen().bounds.size
+
+let queue = NSOperationQueue()

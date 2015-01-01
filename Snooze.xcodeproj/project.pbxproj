@@ -40,6 +40,7 @@
 		EB8F9B831A559E5C002EA611 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8F9B821A559E5C002EA611 /* ClockView.swift */; };
 		EB8F9B861A55A42F002EA611 /* image13.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8F9B841A55A42F002EA611 /* image13.png */; };
 		EB8F9B871A55A42F002EA611 /* image14.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8F9B851A55A42F002EA611 /* image14.png */; };
+		EB8F9B891A55C817002EA611 /* image15.png in Resources */ = {isa = PBXBuildFile; fileRef = EB8F9B881A55C817002EA611 /* image15.png */; };
 		EBE231961A550266006DBCE4 /* background02.png in Resources */ = {isa = PBXBuildFile; fileRef = EBE231951A550266006DBCE4 /* background02.png */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		EB8F9B821A559E5C002EA611 /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		EB8F9B841A55A42F002EA611 /* image13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image13.png; sourceTree = "<group>"; };
 		EB8F9B851A55A42F002EA611 /* image14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image14.png; sourceTree = "<group>"; };
+		EB8F9B881A55C817002EA611 /* image15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image15.png; sourceTree = "<group>"; };
 		EBE231951A550266006DBCE4 /* background02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background02.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -229,6 +231,7 @@
 				EB48C6BF1A54CD9200E1B32B /* image12.png */,
 				EB8F9B841A55A42F002EA611 /* image13.png */,
 				EB8F9B851A55A42F002EA611 /* image14.png */,
+				EB8F9B881A55C817002EA611 /* image15.png */,
 				EB6811D21A5521D50066B09D /* image104.png */,
 				EB6811D41A5524990066B09D /* image109.png */,
 				EB6811D51A5524990066B09D /* image110.png */,
@@ -354,6 +357,7 @@
 				EB109B871A53B61A00F1D4D0 /* Images.xcassets in Resources */,
 				EB6811D11A5520890066B09D /* background101.png in Resources */,
 				EB48C6B71A5492C200E1B32B /* image06.png in Resources */,
+				EB8F9B891A55C817002EA611 /* image15.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -84,13 +84,12 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         rsgr.direction = .Right
         self.addGestureRecognizer(rsgr)
         
+        drawDots()
         drawWelcome()
         drawCamera()
         drawAlarm()
         drawCongrats()
-        
-        drawDots()
-        
+            
         initializeCamera()
     }
     
@@ -105,7 +104,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         
         if let img = imageTaken {} else {
             if currentView == 1 && next {
-                //return
+                return
             }
         }
         
@@ -178,10 +177,11 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     func drawWelcome() {
         welcomeView = UIView(frame: CGRectMake(0, 0, deviceSize.width, deviceSize.height))
         
-        background = UIImageView(frame: self.bounds)
-        background.image = UIImage(named: night ? "background101.png" : "background01.png")
+        self.background = UIImageView(frame: self.bounds)
+        self.background.image = UIImage(named: self.night ? "background101.png" : "background01.png")
         
-        welcomeView.addSubview(background)
+        self.welcomeView.addSubview(self.background)
+        
         self.addSubview(welcomeView)
     }
     

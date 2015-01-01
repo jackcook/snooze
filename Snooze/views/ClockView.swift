@@ -21,6 +21,8 @@ class ClockView: UIView {
     var minute = 0
     var hour = 0
     
+    var snoozeController: SnoozeViewController!
+    
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
         
@@ -31,12 +33,6 @@ class ClockView: UIView {
         hour = comps!.hour
         
         self.backgroundColor = UIColor(red: 0.82, green: 0.81, blue: 0.8, alpha: 1)
-        
-        clock = UIImageView(frame: CGRectMake((deviceSize.width - 158) / 2, (deviceSize.height - 175) / 2, 158, 175))
-        clock.image = UIImage(named: "image13.png")
-        
-        clockCenter = UIImageView(frame: CGRectMake((deviceSize.width - 10) / 2, (deviceSize.height - 10) / 2, 10, 10))
-        clockCenter.image = UIImage(named: "image14.png")
         
         secondHand = UIView(frame: CGRectMake((deviceSize.width - 6) / 2, (deviceSize.height - 100) / 2, 3, 100))
         var secondColor = UIView(frame: CGRectMake(0, 0, 3, 50))
@@ -56,13 +52,22 @@ class ClockView: UIView {
         hourHand.addSubview(hourColor)
         hourHand.transform = CGAffineTransformRotate(CGAffineTransformIdentity, 1.5707)
         
-        self.addSubview(clock)
         self.addSubview(secondHand)
         self.addSubview(minuteHand)
         self.addSubview(hourHand)
-        self.addSubview(clockCenter)
         
         animateClock()
+        
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+            self.clock = UIImageView(frame: CGRectMake((deviceSize.width - 158) / 2, (deviceSize.height - 175) / 2, 158, 175))
+            self.clock.image = UIImage(named: "image13.png")
+            
+            self.clockCenter = UIImageView(frame: CGRectMake((deviceSize.width - 10) / 2, (deviceSize.height - 10) / 2, 10, 10))
+            self.clockCenter.image = UIImage(named: "image14.png")
+            
+            self.insertSubview(self.clock, belowSubview: self.secondHand)
+            self.addSubview(self.clockCenter)
+        }
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -123,6 +128,7 @@ class ClockView: UIView {
                                             self.hourHand.transform = self.r((((CGFloat(M_PI * 2) / 12) * CGFloat(self.hour)) + hourTransform) / 2)
                                             self.hourHand.transform = self.r((CGFloat(M_PI * 2) / 12) * CGFloat(self.hour))
                                         }, completion: { (done) -> Void in
+                                            //self.snoozeController.clockDone()
                                             self.actuallyAnimateClock()
                                             var timer = NSTimer(timeInterval: 1, target: self, selector: "actuallyAnimateClock", userInfo: nil, repeats: true)
                                             NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
@@ -148,12 +154,12 @@ class ClockView: UIView {
         var minuteRotate = M_PI / 30 * Double(minute)
         var hourRotate = M_PI / 6 * Double(hour)
         
-        UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+        UIView.animateWithDuration(1, delay: 0, options: .CurveLinear, animations: { () -> Void in
             self.secondHand.transform = CGAffineTransformRotate(CGAffineTransformIdentity, CGFloat(secondRotate))
             self.minuteHand.transform = CGAffineTransformRotate(CGAffineTransformIdentity, CGFloat(minuteRotate))
             self.hourHand.transform = CGAffineTransformRotate(CGAffineTransformIdentity, CGFloat(hourRotate))
         }) { (done) -> Void in
-            
+            self.snoozeController.clockDone()
         }
     }
     
