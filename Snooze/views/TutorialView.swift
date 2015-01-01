@@ -17,7 +17,6 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     var secondDot: UIImageView!
     var thirdDot: UIImageView!
     var fourthDot: UIImageView!
-    var fifthDot: UIImageView!
     
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
@@ -111,7 +110,6 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         secondDot.image = UIImage(named: "image02.png")
         thirdDot.image = UIImage(named: "image02.png")
         fourthDot.image = UIImage(named: "image02.png")
-        fifthDot.image = UIImage(named: "image02.png")
         
         if currentView == 0 {
             firstDot.image = UIImage(named: "image01.png")
@@ -122,34 +120,28 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
             thirdDot.image = UIImage(named: "image01.png")
         } else if currentView == 3 {
             fourthDot.image = UIImage(named: "image01.png")
-        } else {
-            fifthDot.image = UIImage(named: "image01.png")
         }
     }
     
     func drawDots() {
         let y = deviceSize.height - 36
         
-        firstDot = UIImageView(frame: CGRectMake((deviceSize.width / 2) - 54, y, 12, 12))
+        firstDot = UIImageView(frame: CGRectMake((deviceSize.width / 2) - 42, y, 12, 12))
         firstDot.image = UIImage(named: "image01.png")
         
-        secondDot = UIImageView(frame: CGRectMake((deviceSize.width / 2) - 30, y, 12, 12))
+        secondDot = UIImageView(frame: CGRectMake((deviceSize.width / 2) - 18, y, 12, 12))
         secondDot.image = UIImage(named: "image02.png")
         
-        thirdDot = UIImageView(frame: CGRectMake((deviceSize.width / 2) - 6, y, 12, 12))
+        thirdDot = UIImageView(frame: CGRectMake((deviceSize.width / 2) + 6, y, 12, 12))
         thirdDot.image = UIImage(named: "image02.png")
         
-        fourthDot = UIImageView(frame: CGRectMake((deviceSize.width / 2) + 18, y, 12, 12))
+        fourthDot = UIImageView(frame: CGRectMake((deviceSize.width / 2) + 30, y, 12, 12))
         fourthDot.image = UIImage(named: "image02.png")
-        
-        fifthDot = UIImageView(frame: CGRectMake((deviceSize.width / 2) + 42, y, 12, 12))
-        fifthDot.image = UIImage(named: "image02.png")
         
         self.addSubview(firstDot)
         self.addSubview(secondDot)
         self.addSubview(thirdDot)
         self.addSubview(fourthDot)
-        self.addSubview(fifthDot)
     }
     
     func drawWelcome() {
@@ -307,6 +299,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
             var data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageSampleBuffer)
             self.imageTaken = UIImage(data: data)
             self.finishedImage.image = self.imageTaken
+            self.alarmImage.image = self.imageTaken
             
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.finishedImage.alpha = 1
@@ -380,7 +373,9 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         alarmAMPMButton.setImage(UIImage(named: "image10.png"), forState: .Highlighted)
         alarmAMPMButton.addTarget(self, action: "alarmAMPMButtonAction", forControlEvents: .TouchUpInside)
         
-        alarmImage = UIImageView(frame: CGRectMake(0, deviceSize.height - 60 - (deviceSize.width / (16 / 9)), deviceSize.width, deviceSize.width / (16 / 9)))
+        alarmImage = UIImageView(frame: CGRectMake(0, deviceSize.height - 60 - (deviceSize.width / (16 / 9)), deviceSize.width, (deviceSize.width / (16 / 9)) + 60))
+        alarmImage.contentMode = .ScaleAspectFill
+        alarmImage.clipsToBounds = true
         alarmImage.backgroundColor = UIColor.blackColor()
         
         alarmDotsBackground = UIView(frame: CGRectMake(0, deviceSize.height - 60, deviceSize.width, 60))
