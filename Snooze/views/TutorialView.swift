@@ -17,6 +17,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     var secondDot: UIImageView!
     var thirdDot: UIImageView!
     var fourthDot: UIImageView!
+    var dotsBackground: UIView!
     
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
@@ -27,7 +28,6 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     var cameraView: UIView!
     var cameraLayer: UIView!
     var finishedImage: UIImageView!
-    var dotsBackground: UIView!
     var cameraButton: BFPaperButton!
     var retryButton: BFPaperButton!
     var finishedButton: BFPaperButton!
@@ -48,7 +48,6 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     var alarmAMPMButton: UIButton!
     var alarmTooltip: UIImageView!
     var alarmImage: UIImageView!
-    var alarmDotsBackground: UIView!
     
     var hours = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
     var minutes = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"]
@@ -56,7 +55,6 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     var congratsView: UIView!
     var congratsBackground: UIImageView!
     var congratsDoneButton: UIButton!
-    var congratsDotsBackground: UIView!
     
     var currentView = 0
     
@@ -152,6 +150,10 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         fourthDot = UIImageView(frame: CGRectMake((deviceSize.width / 2) + 30, y, 12, 12))
         fourthDot.image = UIImage(named: "image02.png")
         
+        dotsBackground = UIView(frame: CGRectMake(0, deviceSize.height - 60, deviceSize.width, 60))
+        dotsBackground.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.8)
+        
+        self.addSubview(dotsBackground)
         self.addSubview(firstDot)
         self.addSubview(secondDot)
         self.addSubview(thirdDot)
@@ -179,9 +181,6 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         var hideTooltip = UITapGestureRecognizer(target: self, action: "hideTooltip")
         hideTooltip.numberOfTapsRequired = 1
         cameraLayer.addGestureRecognizer(hideTooltip)
-        
-        dotsBackground = UIView(frame: CGRectMake(0, deviceSize.height - 60, deviceSize.width, 60))
-        dotsBackground.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.8)
         
         cameraButton = BFPaperButton(frame: CGRectMake(0, deviceSize.height - 120, deviceSize.width, 60), raised: false)
         cameraButton.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.6)
@@ -240,7 +239,6 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         
         cameraView.addSubview(cameraLayer)
         cameraView.addSubview(finishedImage)
-        cameraView.addSubview(dotsBackground)
         cameraView.addSubview(cameraButton)
         cameraView.addSubview(retryButton)
         cameraView.addSubview(finishedButton)
@@ -392,9 +390,6 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         alarmImage.clipsToBounds = true
         alarmImage.backgroundColor = UIColor.blackColor()
         
-        alarmDotsBackground = UIView(frame: CGRectMake(0, deviceSize.height - 60, deviceSize.width, 60))
-        alarmDotsBackground.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.8)
-        
         alarmView.addSubview(alarmTitle)
         alarmView.addSubview(alarmClockImage)
         alarmView.addSubview(alarmHourPicker)
@@ -402,7 +397,6 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         alarmView.addSubview(alarmMinutePicker)
         alarmView.addSubview(alarmAMPMButton)
         alarmView.addSubview(alarmImage)
-        alarmView.addSubview(alarmDotsBackground)
         self.addSubview(alarmView)
     }
     
@@ -460,12 +454,8 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         congratsDoneButton.sizeToFit()
         congratsDoneButton.frame = CGRectMake((deviceSize.width - congratsDoneButton.frame.size.width) / 2, ((deviceSize.height - congratsDoneButton.frame.size.height) / 2) + (deviceSize.height / 4), congratsDoneButton.frame.size.width, congratsDoneButton.frame.size.height)
         
-        congratsDotsBackground = UIView(frame: CGRectMake(0, deviceSize.height - 60, deviceSize.width, 60))
-        congratsDotsBackground.backgroundColor = UIColor(red: 0.53, green: 0.79, blue: 0.45, alpha: 0.8)
-        
         congratsView.addSubview(congratsBackground)
         congratsView.addSubview(congratsDoneButton)
-        congratsView.addSubview(congratsDotsBackground)
         self.addSubview(congratsView)
     }
     
