@@ -52,6 +52,9 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
     var alarmMinutePicker: UIPickerView!
     var alarmAMPMButton: UIButton!
     var alarmTooltip: UIImageView!
+    var alarmTooltipTitle: UILabel!
+    var alarmTooltipBody: UILabel!
+    var alarmTooltipDone: UIButton!
     var alarmImage: UIImageView!
     
     var hours = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
@@ -102,7 +105,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         
         if let img = imageTaken {} else {
             if currentView == 1 && next {
-                return
+                //return
             }
         }
         
@@ -308,6 +311,7 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         cameraButton.userInteractionEnabled = false
         
         var videoConnection: AVCaptureConnection?
+        
         for connection in stillImageOutput.connections {
             for port in connection.inputPorts as [AVCaptureInputPort] {
                 if port.mediaType == AVMediaTypeVideo {
@@ -399,6 +403,36 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         alarmAMPMButton.setImage(UIImage(named: "image10.png"), forState: .Highlighted)
         alarmAMPMButton.addTarget(self, action: "alarmAMPMButtonAction", forControlEvents: .TouchUpInside)
         
+        var hideTooltip = UITapGestureRecognizer(target: self, action: "hideAlarmTooltip")
+        hideTooltip.numberOfTapsRequired = 1
+        alarmView.addGestureRecognizer(hideTooltip)
+        
+        var image = UIImage(named: night ? "image112.png" : "image12.png")
+        alarmTooltip = UIImageView(image: image)
+        alarmTooltip.frame = CGRectMake((deviceSize.width - (image!.size.width * 0.3)) / 2, deviceSize.height - (image!.size.height * 0.3) - (deviceSize.height / 3.5), image!.size.width * 0.3, image!.size.height * 0.3)
+        
+        alarmTooltipTitle = UILabel()
+        alarmTooltipTitle.text = "SET YOUR ALARM"
+        alarmTooltipTitle.font = UIFont(name: "GillSans-Light", size: 24)
+        alarmTooltipTitle.textColor = night ? UIColor(red: 0.66, green: 0.66, blue: 0.66, alpha: 1) : UIColor(red: 0.39, green: 0.39, blue: 0.39, alpha: 1)
+        alarmTooltipTitle.sizeToFit()
+        alarmTooltipTitle.frame = CGRectMake((alarmTooltip.frame.size.width - alarmTooltipTitle.frame.size.width) / 2, 38, alarmTooltipTitle.frame.size.width, alarmTooltipTitle.frame.size.height)
+        
+        alarmTooltipBody = UILabel(frame: CGRectMake(26, 6, alarmTooltip.frame.size.width - 52, alarmTooltip.frame.size.height))
+        alarmTooltipBody.numberOfLines = 0
+        alarmTooltipBody.text = "When you are setting the time Snooze will wake you up, this is the time it will default at."
+        alarmTooltipBody.font = UIFont(name: "GillSans-Light", size: 16)
+        alarmTooltipBody.textColor = night ? UIColor(red: 0.76, green: 0.76, blue: 0.76, alpha: 1) : UIColor(red: 0.29, green: 0.29, blue: 0.29, alpha: 1)
+        
+        alarmTooltipDone = UIButton()
+        alarmTooltipDone.setTitle("OK", forState: .Normal)
+        alarmTooltipDone.setTitleColor(UIColor(red: 0.55, green: 0.8, blue: 0.46, alpha: 1), forState: .Normal)
+        alarmTooltipDone.setTitleColor(UIColor(red: 0.33, green: 0.49, blue: 0.24, alpha: 1), forState: .Highlighted)
+        alarmTooltipDone.titleLabel?.font = UIFont(name: "GillSans-Italic", size: 20)
+        alarmTooltipDone.addTarget(self, action: "hideAlarmTooltip", forControlEvents: UIControlEvents.TouchUpInside)
+        alarmTooltipDone.sizeToFit()
+        alarmTooltipDone.frame = CGRectMake((alarmTooltip.frame.size.width - alarmTooltipDone.frame.size.width) / 2, alarmTooltip.frame.size.height - alarmTooltipDone.frame.size.height - 16, alarmTooltipDone.frame.size.width, alarmTooltipDone.frame.size.height)
+        
         alarmImage = UIImageView(frame: CGRectMake(0, deviceSize.height - 60 - (deviceSize.width / (16 / 9)), deviceSize.width, (deviceSize.width / (16 / 9)) + 60))
         alarmImage.contentMode = .ScaleAspectFill
         alarmImage.clipsToBounds = true
@@ -411,6 +445,10 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         alarmView.addSubview(alarmMinutePicker)
         alarmView.addSubview(alarmAMPMButton)
         alarmView.addSubview(alarmImage)
+        alarmView.addSubview(alarmTooltip)
+        alarmTooltip.addSubview(alarmTooltipTitle)
+        alarmTooltip.addSubview(alarmTooltipBody)
+        alarmTooltip.addSubview(alarmTooltipDone)
         self.addSubview(alarmView)
     }
     
@@ -452,6 +490,14 @@ class TutorialView: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         }
         
         am = !am
+    }
+    
+    func hideAlarmTooltip() {
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.alarmTooltip.alpha = 0
+        }) { (done) -> Void in
+            self.alarmTooltip.removeFromSuperview()
+        }
     }
     
     func drawCongrats() {
